@@ -11,10 +11,30 @@
         <h1>¿Quieres ser mi San Valentín? 💘</h1>
 
         <div class="botones">
-            <a href="respuesta.html" class="btn si">Sí 💕</a>
-            <a href="respuesta.html" class="btn si-o-si">Sí o Sí 😏</a>
+            <a href="respuesta.html" id="btnSi" class="btn si">Sí ❤️</a>
+            <button id="btnNo" class="btn no">No 💔</button>
         </div>
     </div>
+
+<script>
+let escalaSi = 1;
+let escalaNo = 1;
+
+const btnSi = document.getElementById("btnSi");
+const btnNo = document.getElementById("btnNo");
+
+btnNo.addEventListener("click", function() {
+    escalaSi += 0.3;
+    escalaNo -= 0.2;
+
+    if (escalaNo <= 0.2) {
+        escalaNo = 0.2;
+    }
+
+    btnSi.style.transform = "scale(" + escalaSi + ")";
+    btnNo.style.transform = "scale(" + escalaNo + ")";
+});
+</script>
 
 </body>
 </html>
