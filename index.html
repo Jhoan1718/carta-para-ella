@@ -16,25 +16,27 @@
         </div>
     </div>
 
-<script>
-let escalaSi = 1;
-let escalaNo = 1;
+    <script>
+        let escalaSi = 1;
+        let escalaNo = 1;
 
-const btnSi = document.getElementById("btnSi");
-const btnNo = document.getElementById("btnNo");
+        const btnSi = document.getElementById("btnSi");
+        const btnNo = document.getElementById("btnNo");
 
-btnNo.addEventListener("click", function() {
-    escalaSi += 0.3;
-    escalaNo -= 0.2;
+        btnNo.addEventListener("click", function () {
 
-    if (escalaNo <= 0.2) {
-        escalaNo = 0.2;
-    }
+            escalaSi += 0.4;
+            escalaNo -= 0.35;
 
-    btnSi.style.transform = "scale(" + escalaSi + ")";
-    btnNo.style.transform = "scale(" + escalaNo + ")";
-});
-</script>
+            if (escalaNo <= 0.05) {
+                escalaNo = 0;
+                btnNo.style.display = "none";
+            }
+
+            btnSi.style.transform = "scale(" + escalaSi + ")";
+            btnNo.style.transform = "scale(" + escalaNo + ")";
+        });
+    </script>
 
 </body>
 </html>
