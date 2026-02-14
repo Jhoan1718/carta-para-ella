@@ -7,23 +7,46 @@
 
 body {
     height: 100vh;
-    background-image: url("img/fondo2.jpg"); /* 👈 IMAGEN DE FONDO */
+    background-image: url("img/fondo2.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
+/* CONTENEDOR CENTRAL */
 .contenedor {
-    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+    background: rgba(0, 0, 0, 0.65);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 25px;
     text-align: center;
     color: white;
     max-width: 400px;
+    z-index: 2;
+    animation: aparecer 1.5s ease;
 }
 
+/* MARCO DE CORAZONES */
+.contenedor::before {
+    content: "❤️ 💖 💕 💘 ❤️ 💖 💕 💘";
+    position: absolute;
+    top: -28px;
+    left: -28px;
+    right: -28px;
+    bottom: -28px;
+    border-radius: 35px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 1.8;
+    pointer-events: none;
+    animation: latido 2s infinite;
+}
+
+/* FOTO PERFIL */
 .perfil {
     width: 150px;
     height: 150px;
@@ -31,13 +54,111 @@ body {
     object-fit: cover;
     border: 4px solid #ff4081;
     margin-bottom: 20px;
+    animation: flotar 3s ease-in-out infinite;
 }
 
 h1 {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 2em;
 }
 
 p {
     font-size: 1.2em;
+}
+
+/* FOTOS DE LA PAREJA */
+.pareja {
+    position: absolute;
+    width: 220px;
+    border-radius: 20px;
+    border: 4px solid #ff4081;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* IZQUIERDA */
+.izquierda {
+    left: 40px;
+    animation: entrarIzq 1.5s ease forwards, flotarSuave 4s ease-in-out infinite 1.5s;
+}
+
+/* DERECHA */
+.derecha {
+    right: 40px;
+    animation: entrarDer 1.5s ease forwards, flotarSuave 4s ease-in-out infinite 1.5s;
+}
+
+/* ANIMACIONES */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes latido {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes flotarSuave {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes entrarIzq {
+    from {
+        transform: translateX(-250px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes entrarDer {
+    from {
+        transform: translateX(250px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* CORAZONES FLOTANDO */
+.corazones span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 2em;
+    animation: subir 6s linear infinite;
+}
+
+.corazones span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.corazones span:nth-child(2) { left: 30%; animation-delay: 1s; }
+.corazones span:nth-child(3) { left: 60%; animation-delay: 2s; }
+.corazones span:nth-child(4) { left: 80%; animation-delay: 3s; }
+
+@keyframes subir {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
 }
