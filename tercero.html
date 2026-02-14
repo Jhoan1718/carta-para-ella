@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Última oportunidad</title>
+    <link rel="stylesheet" href="tercero.css">
+</head>
+<body>
+
+    <div class="contenedor">
+        <img src="perfil3.png" class="perfil">
+        <h1>¿Última oportunidad? 💘</h1>
+
+        <div class="botones">
+            <a href="respuesta.html" id="btnSi" class="btn si">Sí ❤️</a>
+            <button id="btnNo" class="btn no">No 💔</button>
+        </div>
+    </div>
+
+<script>
+let escalaSi = 1;
+let escalaNo = 1;
+
+const btnSi = document.getElementById("btnSi");
+const btnNo = document.getElementById("btnNo");
+
+btnNo.addEventListener("click", function() {
+    escalaSi += 0.4;
+    escalaNo -= 0.35;
+
+    if (escalaNo <= 0.05) {
+        btnNo.style.display = "none";
+    }
+
+    btnSi.style.transform = "scale(" + escalaSi + ")";
+    btnNo.style.transform = "scale(" + escalaNo + ")";
+});
+</script>
+
+</body>
+</html>
