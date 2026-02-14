@@ -49,11 +49,9 @@ h1 {
 .no {
     background-color: #555;
 }
-.si-o-si {
-    background-color: #ff4081;
-}
 
 .btn:hover {
     transform: scale(1.1);
 
 }
+
