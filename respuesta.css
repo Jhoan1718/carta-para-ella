@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
     height: 100vh;
-    background-image: url("fondo2.jpg");
+    background-image: url("fondo1.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -20,13 +20,13 @@ body {
 /* CONTENEDOR CENTRAL */
 .contenedor {
     position: relative;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0,0,0,0.65);
     padding: 40px;
     border-radius: 25px;
     text-align: center;
     color: white;
     max-width: 400px;
-    z-index: 2;
+    z-index: 5;
     animation: aparecer 1.5s ease;
 }
 
@@ -34,10 +34,7 @@ body {
 .contenedor::before {
     content: "❤️ 💖 💕 💘 ❤️ 💖 💕 💘";
     position: absolute;
-    top: -28px;
-    left: -28px;
-    right: -28px;
-    bottom: -28px;
+    inset: -28px;
     border-radius: 35px;
     font-size: 22px;
     text-align: center;
@@ -46,14 +43,14 @@ body {
     animation: latido 2s infinite;
 }
 
-/* FOTO PERFIL */
+/* PERFIL */
 .perfil {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    object-fit: cover;
     border: 4px solid #ff4081;
     margin-bottom: 20px;
+    object-fit: cover;
     animation: flotar 3s ease-in-out infinite;
 }
 
@@ -66,37 +63,48 @@ p {
     font-size: 1.2em;
 }
 
-/* FOTOS DE LA PAREJA */
-.pareja {
+/* COLLAGES */
+.collage {
     position: absolute;
-    width: 220px;
-    border-radius: 20px;
-    border: 4px solid #ff4081;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    width: 260px;
+    height: 420px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* IZQUIERDA */
+.collage img {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #ff4081;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    animation: flotarSuave 4s ease-in-out infinite;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* HOVER INDIVIDUAL */
+.collage img:hover {
+    transform: scale(1.2) rotate(-4deg);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(255,64,129,0.6);
+}
+
 .izquierda {
-    left: 40px;
-    animation: entrarIzq 1.5s ease forwards, flotarSuave 4s ease-in-out infinite 1.5s;
+    left: 20px;
 }
 
-/* DERECHA */
 .derecha {
-    right: 40px;
-    animation: entrarDer 1.5s ease forwards, flotarSuave 4s ease-in-out infinite 1.5s;
+    right: 20px;
 }
 
 /* ANIMACIONES */
 @keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: scale(0.7);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes latido {
@@ -113,33 +121,11 @@ p {
 
 @keyframes flotarSuave {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
     100% { transform: translateY(0); }
 }
 
-@keyframes entrarIzq {
-    from {
-        transform: translateX(-250px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes entrarDer {
-    from {
-        transform: translateX(250px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* CORAZONES FLOTANDO */
+/* CORAZONES QUE SUBEN */
 .corazones span {
     position: absolute;
     bottom: -50px;
@@ -147,18 +133,32 @@ p {
     animation: subir 6s linear infinite;
 }
 
-.corazones span:nth-child(1) { left: 10%; animation-delay: 0s; }
-.corazones span:nth-child(2) { left: 30%; animation-delay: 1s; }
-.corazones span:nth-child(3) { left: 60%; animation-delay: 2s; }
-.corazones span:nth-child(4) { left: 80%; animation-delay: 3s; }
+.corazones span:nth-child(1){ left: 10%; }
+.corazones span:nth-child(2){ left: 30%; animation-delay: 1s; }
+.corazones span:nth-child(3){ left: 60%; animation-delay: 2s; }
+.corazones span:nth-child(4){ left: 80%; animation-delay: 3s; }
 
 @keyframes subir {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* ✨ ESTELA DEL MOUSE */
+.trail-heart {
+    position: absolute;
+    pointer-events: none;
+    font-size: 20px;
+    animation: trail 1s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes trail {
     0% {
-        transform: translateY(0);
+        transform: scale(1) translateY(0);
         opacity: 1;
     }
     100% {
-        transform: translateY(-110vh);
+        transform: scale(0) translateY(-30px);
         opacity: 0;
     }
 }
