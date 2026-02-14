@@ -7,7 +7,7 @@
 
 body {
     height: 100vh;
-    background-image: url("img/fondo1.jpg"); /* 👈 IMAGEN DE FONDO */
+    background-image: url("fondo1.jpg"); /* 👈 IMAGEN DE FONDO */
     background-size: cover;
     background-position: center;
     display: flex;
