@@ -46,11 +46,14 @@ h1 {
 .si {
     background-color: #e91e63;
 }
-
+.no {
+    background-color: #555;
+}
 .si-o-si {
     background-color: #ff4081;
 }
 
 .btn:hover {
     transform: scale(1.1);
+
 }
